@@ -30,6 +30,17 @@ const _ = {
         }
         
         return memoizedFunc;
+    },
+
+    bind: function bind(f, thisArg) {
+        // f, thisArg, partials
+        var partials = [].slice.call(arguments, 2);
+        function bindedFunc() {
+            var args = partials.concat([].slice.call(arguments));
+            var result = f.apply(thisArg, args);
+            return result;
+        }
+        return bindedFunc;
     }
 };
 
